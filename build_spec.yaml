@@ -24,7 +24,7 @@ steps:
     command: |
       export BUILDRUN_HASH=`echo ${OCI_BUILD_RUN_ID} | rev | cut -c 1-7`
       echo "BUILDRUN_HASH: " $BUILDRUN_HASH
-      ls ${OCI_WORKSPACE_DIR}/NodeJSApp
+      ls ${OCI_WORKSPACE_DIR}/github_SignupDevOps
     onFailure:
       - type: Command
         timeoutInSeconds: 40
@@ -61,7 +61,7 @@ steps:
     timeoutInSeconds: 600
     name: "NPM install"
     command: |
-      cd ${OCI_WORKSPACE_DIR}/NodeJSApp
+      cd ${OCI_WORKSPACE_DIR}/github_SignupDevOps
       npm install
     onFailure:
       - type: Command
@@ -89,7 +89,7 @@ steps:
     timeoutInSeconds: 1200
     name: "Build container image"
     command: |
-      cd ${OCI_WORKSPACE_DIR}/NodeJSApp
+      cd ${OCI_WORKSPACE_DIR}/github_SignupDevOps
       docker build --pull --rm -t signup -f DOCKERFILE .
     onFailure:
       - type: Command
